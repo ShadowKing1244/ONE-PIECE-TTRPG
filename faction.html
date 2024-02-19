@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Choose Your Faction</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-image: url('https://images.app.goo.gl/X5HEDLXAXPZ94HxQ8'); /* Background image */
+            background-size: cover;
+            background-position: center;
+            color: #ffffff; /* White text color */
+        }
+
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            text-align: center;
+            padding-top: 50px;
+        }
+
+        h1 {
+            font-size: 36px;
+            margin-bottom: 30px;
+        }
+
+        .faction-button {
+            width: 150px;
+            height: 150px;
+            margin: 20px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .faction-button:hover {
+            transform: scale(1.1); /* Increase size on hover */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Choose Your Faction</h1>
+        <button class="faction-button" onclick="chooseFaction('pirate')">
+            <img src="https://imgur.com/gallery/6HfFX88" alt="Pirate" width="150" height="150">
+            <p>Pirate</p>
+        </button>
+        <button class="faction-button" onclick="chooseFaction('marine')">
+            <img src="https://images.app.goo.gl/6G9gevpDYXd9V8Lm9" alt="Marine" width="150" height="150">
+            <p>Marine</p>
+        </button>
+        <button class="faction-button" onclick="chooseFaction('bounty_hunter')">
+            <img src="https://images.app.goo.gl/6Wbz6JHFVBe1WyfB9" alt="Bounty Hunter" width="150" height="150">
+            <p>Bounty Hunter</p>
+        </button>
+        <button class="faction-button" onclick="chooseFaction('revolutionary')">
+            <img src="https://images.app.goo.gl/dYiThhf764RWX8KB9" alt="Revolutionary" width="150" height="150">
+            <p>Revolutionary</p>
+        </button>
+    </div>
+
+    <script>
+        // Retrieve stored data from localStorage
+        var name = localStorage.getItem('name');
+        var race = localStorage.getItem('race');
+        var island = localStorage.getItem('island');
+
+        function chooseFaction(faction) {
+            // Store chosen faction in localStorage
+            localStorage.setItem('faction', faction);
+            // Redirect to bio.html
+            window.location.href = "bio.html";
+        }
+    </script>
+</body>
+</html>

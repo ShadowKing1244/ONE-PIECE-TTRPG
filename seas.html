@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Open Sea</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #87CEEB; /* Light blue background */
+            color: #000000; /* Black text color */
+            text-align: center;
+            padding-top: 50px;
+        }
+
+        h1 {
+            font-size: 36px;
+            margin-bottom: 30px;
+        }
+
+        .boat {
+            width: 50px;
+            height: 50px;
+            background-color: brown; /* Brown boat color */
+            position: relative;
+            animation: moveBoat 5s infinite linear; /* Boat animation */
+        }
+
+        @keyframes moveBoat {
+            0% { top: 0; }
+            50% { top: 300px; } /* Adjust vertical movement distance */
+            100% { top: 0; }
+        }
+
+        .button {
+            padding: 10px 20px;
+            background-color: #4CAF50; /* Green background for buttons */
+            color: #FFFFFF; /* White text color */
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin: 10px;
+        }
+
+        .button:hover {
+            background-color: #45a049; /* Darker green on hover */
+        }
+    </style>
+</head>
+<body>
+    <h1>Open Sea</h1>
+    <div class="boat"></div>
+    <button class="button" onclick="findIsland()">Find Island</button>
+    <button class="button" onclick="findBattle()">Find Battle</button>
+
+    <script>
+        // Function to find an island
+        function findIsland() {
+            // Redirect to a random island (storyisland.html)
+            window.location.href = getRandomIsland(); // Implement getRandomIsland() to return a random island URL
+        }
+
+        // Function to find a battle
+        function findBattle() {
+            // Redirect to sea battle (seabattle.html)
+            window.location.href = "seabattle.html";
+        }
+
+        // Function to get a random island URL
+        function getRandomIsland() {
+            var islands = [
+                "goatisland.html",
+                "shellstown.html",
+                "shimotsukivillage.html",
+                "organislands.html",
+                "orangetown.html",
+                "islandofrareanimals.html",
+                "geckoislands.html",
+                "syrupvillage.html",
+                "baratie.html",
+                "conomiislands.html",
+                "gosavillage.html",
+                "cocoyasivillage.html",
+                "arlongpark.html",
+                "loguetown.html"
+            ];
+
+            // Get a random index from the islands array
+            var randomIndex = Math.floor(Math.random() * islands.length);
+            // Return the URL of the random island
+            return islands[randomIndex];
+        }
+    </script>
+</body>
+</html>

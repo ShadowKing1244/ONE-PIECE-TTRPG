@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Goat Island</title>
+    <style>
+        /* CSS styles */
+        body {
+            background-image: url("https://imgur.com/gallery/fuiznxY");
+            background-size: cover;
+            background-repeat: no-repeat;
+            font-family: Arial, sans-serif;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+        .button {
+            background-color: #4CAF50; /* Green */
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            transition-duration: 0.4s;
+            cursor: pointer;
+            border-radius: 12px;
+        }
+        .button:hover {
+            background-color: #45a049;
+        }
+        .dialogue-box {
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 10px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome to Goat Island</h1>
+    <div class="dialogue-box">
+        <!-- Description of Goat Island -->
+        <p>This island is known for its lush greenery and friendly inhabitants.</p>
+        <p>Explore Goat Island and discover its hidden treasures!</p>
+    </div>
+    <button class="button" onclick="openInventory()">Inventory</button>
+    <button class="button" onclick="walk()">Walk</button>
+    <button class="button" onclick="openShop()">Shop</button>
+    <button class="button" onclick="embark()">Embark</button>
+
+    <script>
+        // Function to open the inventory
+        function openInventory() {
+            window.location.href = "inventory.html";
+        }
+
+        // Function to simulate walking on the island
+        function walk() {
+            var encounterChance = Math.floor(Math.random() * 10) + 1;
+            if (encounterChance === 1) {
+                alert("You found a Devil Fruit!");
+                window.location.href = "inventory.html"; // Redirect to inventory page
+            } else {
+                alert("You encounter some mobs on the island!");
+                document.getElementById("battleButton").style.display = "block"; // Show the Battle button
+            }
+        }
+
+        // Function to open the shop
+        function openShop() {
+            window.location.href = "shop.html";
+        }
+
+        // Function to embark back to sea
+        function embark() {
+            window.location.href = "seas.html";
+        }
+    </script>
+
+    <!-- Battle button -->
+    <button id="battleButton" class="button" style="display: none;" onclick="startBattle()">Battle</button>
+
+    <script>
+        // Function to start the battle
+        function startBattle() {
+            window.location.href = "battle.html"; // Redirect to battle page
+        }
+    </script>
+</body>
+</html>

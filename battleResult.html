@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Battle Result</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #87CEEB; /* Light blue background */
+            color: #000000; /* Black text color */
+            text-align: center;
+            padding-top: 50px;
+        }
+
+        h1 {
+            font-size: 36px;
+            margin-bottom: 30px;
+        }
+
+        .result-text {
+            margin-bottom: 20px;
+        }
+
+        .button {
+            padding: 10px 20px;
+            background-color: #4CAF50; /* Green background for buttons */
+            color: #FFFFFF; /* White text color */
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .button:hover {
+            background-color: #45a049; /* Darker green on hover */
+        }
+    </style>
+</head>
+<body>
+    <h1>Battle Result</h1>
+    <div class="result-text">
+        <!-- Display battle result message based on the result parameter -->
+        <p>You have emerged victorious!</p>
+        <p>You have a chance to learn a new melee skill.</p>
+    </div>
+    <button class="button" onclick="learnSkill()">Yes, I want to learn</button>
+    <button class="button" onclick="returnToSeas()">No, return to the seas</button>
+
+    <script>
+        // Function to handle learning a new melee skill
+        function learnSkill() {
+            // Perform learning skill actions
+            // Redirect to seas.html
+            window.location.href = "seas.html";
+        }
+
+        // Function to handle returning to seas without learning a skill
+        function returnToSeas() {
+            // Perform return to seas actions
+            // Redirect to seas.html
+            window.location.href = "seas.html";
+        }
+    </script>
+</body>
+</html>

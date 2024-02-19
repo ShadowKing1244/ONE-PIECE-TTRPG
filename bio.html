@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Character Bio</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-image: url('https://images.app.goo.gl/XwAhwgVffvamjEB6A'); /* Background image */
+            background-size: cover;
+            background-position: center;
+            color: #ffffff; /* White text color */
+        }
+
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            text-align: center;
+            padding-top: 50px;
+        }
+
+        h1 {
+            font-size: 36px;
+            margin-bottom: 30px;
+        }
+
+        .info {
+            margin-bottom: 20px;
+            text-align: left;
+            padding: 10px;
+            border: 2px solid #ffffff;
+            border-radius: 10px;
+            background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+        }
+
+        #prompt-container {
+            margin-top: 40px;
+            text-align: left;
+        }
+
+        #prompt {
+            padding: 10px;
+            border: 2px solid #ffffff;
+            border-radius: 10px;
+            background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+        }
+
+        #haki-button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 18px;
+            background-color: #f44336; /* Red button */
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        #haki-button:hover {
+            background-color: #d32f2f; /* Darker red on hover */
+        }
+
+        #ready-button {
+            padding: 10px 20px;
+            font-size: 18px;
+            background-color: #4CAF50; /* Green button */
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        #ready-button:hover {
+            background-color: #45a049; /* Darker green on hover */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Your Character Bio</h1>
+        <div class="info">
+            <p>Name: <span id="name"></span></p>
+            <p>Race: <span id="race"></span></p>
+            <p>Island: <span id="island"></span></p>
+            <p>Faction: <span id="faction"></span></p>
+        </div>
+        <div id="prompt-container">
+            <div id="prompt"></div>
+        </div>
+        <button id="haki-button" onclick="decideHaki()">Do I have Conqueror's Haki?</button>
+        <button id="ready-button" onclick="proceed()">Are you ready?</button>
+    </div>
+
+    <script>
+        // Retrieve stored data from localStorage
+        var name = localStorage.getItem('name');
+        var race = localStorage.getItem('race');
+        var island = localStorage.getItem('island');
+        var faction = localStorage.getItem('faction');
+
+        // Display retrieved data
+        document.getElementById('name').innerText = name;
+        document.getElementById('race').innerText = race;
+        document.getElementById('island').innerText = island;
+        document.getElementById('faction').innerText = faction;
+
+        // Generate random prompt based on race, island, and faction
+        var prompt = generatePrompt(race, island, faction);
+        if (prompt) {
+            document.getElementById('prompt').innerText = prompt;
+        } else {
+            document.getElementById('prompt').innerText = "No prompt available for this combination.";
+        }
+
+        function generatePrompt(race, island, faction) {
+            // Define prompts based on race, island, and faction
+            var prompts = {
+                "Human": {
+                    "Dawn Island": {
+                        "Pirate": `${name}, you grew up on Dawn Island, dreaming of adventure on the high seas as a pirate.`,
+                        "Marine": `${name}, Loguetown, the town of beginnings and endings, is your hometown. As a Marine recruit, you've sworn to uphold justice.`,
+                    },
+                    // Add more prompts for other islands...
+                },
+                "Fish-Man": {
+                    "Fish-Man Island": {
+                        "Pirate": `${name}, born and raised in the underwater kingdom of Fish-Man Island, you're accustomed to its unique culture. Your pirate heritage runs deep, and you're ready to explore the world above.`,
+                        "Marine": `${name}, the majestic Ryugu Kingdom is where you call home, among the merfolk and fish-men. As a member of the Marines, you've pledged to protect the sea from piracy.`,
+                    },
+                },
+                // Add prompts for other races...
+            };
+
+            // Get a random prompt based on race, island, and faction
+            return prompts[race]?.[island]?.[faction];
+        }
+
+        function decideHaki() {
+            // Generate a random number (0 or 1)
+            var random = Math.floor(Math.random() * 2);
+            var hakiStatus;
+
+            // Determine if the player has Conqueror's Haki
+            if (random === 1) {
+                hakiStatus = "Yes";
+            } else {
+                hakiStatus = "No";
+            }
+
+            // Show the result
+            alert(`Do you have Conqueror's Haki? ${hakiStatus}`);
+        }
+
+        function proceed() {
+            // Redirect to the next page (wherever it leads)
+            window.location.href = "play.html";
+        }
+    </script>
+</body>
+</html>

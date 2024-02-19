@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Character Creation</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-image: url('https://i.imgur.com/CXaImtn.jpg'); /* Background image */
+            background-size: cover;
+            background-position: center;
+            color: #ffffff; /* White text color */
+        }
+
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            text-align: center;
+            padding-top: 50px;
+        }
+
+        h1 {
+            font-size: 36px;
+            margin-bottom: 30px;
+        }
+
+        input[type="text"] {
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+
+        select {
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+
+        #race-description {
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Character Creation</h1>
+        <label for="name">Enter your name:</label>
+        <input type="text" id="name" placeholder="Your name here">
+
+        <label for="race">Choose your race:</label>
+        <select id="race" onchange="updateDescription()">
+            <option value="human">Human</option>
+            <option value="fishman">Fish-Man</option>
+            <option value="merfolk">Merfolk</option>
+            <option value="giant">Giant</option>
+            <option value="mink">Mink</option>
+            <option value="long-arm">Long-Arm Tribe</option>
+            <option value="long-leg">Long-Leg Tribe</option>
+            <option value="dwarf">Dwarf</option>
+            <option value="tontatta">Tontatta Tribe</option>
+            <option value="cyborg">Cyborg</option>
+            <option value="pacifista">Pacifista</option>
+            <option value="homie">Homie</option>
+            <option value="automata">Automata</option>
+        </select>
+
+        <div id="race-description"></div>
+
+        <button onclick="redirectToNextPage()">Next</button>
+    </div>
+
+    <script>
+        function updateDescription() {
+            var race = document.getElementById('race').value;
+            var description = "";
+
+            // Add descriptions for each race
+            switch (race) {
+                case 'human':
+                    description = "Humans are the most widespread race in the One Piece world.";
+                    break;
+                case 'fishman':
+                    description = "Fish-Men are humanoid fish-like creatures known for their strength and swimming abilities.";
+                    break;
+                case 'merfolk':
+                    description = "Merfolk are humanoid creatures with fish-like features, such as scales and fins.";
+                    break;
+                case 'giant':
+                    description = "Giants are enormous humanoids known for their exceptional strength and size.";
+                    break;
+                case 'mink':
+                    description = "Minks are anthropomorphic animals with human-like intelligence and animal features.";
+                    break;
+                case 'long-arm':
+                    description = "Long-Arm Tribe members have elongated arms and excel in martial arts.";
+                    break;
+                case 'long-leg':
+                    description = "Long-Leg Tribe members have elongated legs and excel in speed and agility.";
+                    break;
+                case 'dwarf':
+                    description = "Dwarves are small humanoid creatures known for their craftsmanship and agility.";
+                    break;
+                case 'tontatta':
+                    description = "The Tontatta Tribe consists of tiny humanoid beings known for their strength and resilience.";
+                    break;
+                case 'cyborg':
+                    description = "Cyborgs are individuals who have undergone significant cybernetic enhancements, combining human and machine.";
+                    break;
+                case 'pacifista':
+                    description = "Pacifista are humanoid robots created by the Marines, designed for combat.";
+                    break;
+                case 'homie':
+                    description = "Homies are anthropomorphic entities created by Big Mom's Devil Fruit ability, giving life to inanimate objects.";
+                    break;
+                case 'automata':
+                    description = "Automata are mechanical beings created by skilled engineers and scientists for various purposes.";
+                    break;
+            }
+
+            document.getElementById('race-description').innerText = description;
+        }
+
+        function redirectToNextPage() {
+            var name = document.getElementById('name').value;
+            var race = document.getElementById('race').value;
+            var gender = (race === 'merfolk') ? 'female' : 'male'; // Assign gender based on race
+            var island = getRandomIsland(race);
+            
+            // Store data in localStorage for retrieval in the next page
+            localStorage.setItem('name', name);
+            localStorage.setItem('race', race);
+            localStorage.setItem('gender', gender);
+            localStorage.setItem('island', island);
+
+            // Redirect to the next page
+            window.location.href = "faction.html";
+        }
+
+        function getRandomIsland(race) {
+            // Define islands for each race
+            var islands = {
+                human: ['Dawn Island', 'Loguetown', 'Water 7', 'Alabasta', 'Dressrosa', 'Wano Country', 'Totto Land'],
+                fishman: ['Fish-Man Island', 'Ryugu Kingdom'],
+                merfolk: ['Fish-Man Island', 'Ryugu Kingdom'],
+                giant: ['Elbaf'],
+                mink: ['Zou'],
+                'long-arm': ['Sabaody Archipelago'],            'long-leg': ['Sabaody Archipelago'],
+            dwarf: ['Tontatta Kingdom'],
+            tontatta: ['Green Bit'],
+            cyborg: ['Water 7'],
+            pacifista: ['Marineford'],
+            homie: ['Whole Cake Island'],
+            automata: ['Various Locations']
+        };
+
+        // Get a random island for the given race
+        var randomIndex = Math.floor(Math.random() * islands[race].length);
+        return islands[race][randomIndex];
+    }
+</script></body>
+</html>
+```

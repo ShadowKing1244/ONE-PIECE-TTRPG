@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sea Battle</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #87CEEB; /* Light blue background */
+            color: #000000; /* Black text color */
+        }
+
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            text-align: center;
+            padding-top: 50px;
+        }
+
+        h1 {
+            font-size: 36px;
+            margin-bottom: 30px;
+        }
+
+        .encounter {
+            background-color: #FFFFFF; /* White background for encounter box */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Shadow effect */
+        }
+
+        .battle-log {
+            text-align: left;
+            margin-bottom: 20px;
+            max-height: 300px; /* Limit height of battle log */
+            overflow-y: auto; /* Enable scrolling for overflow */
+            padding: 10px;
+            border: 1px solid #CCCCCC; /* Gray border */
+            border-radius: 5px;
+            background-color: #f9f9f9; /* Light gray background */
+        }
+
+        .health-bar {
+            width: 200px;
+            height: 20px;
+            background-color: #f0f0f0; /* Light gray background for health bar */
+            border: 1px solid #CCCCCC; /* Gray border */
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+
+        .health-bar-inner {
+            height: 100%;
+            background-color: #4CAF50; /* Green health bar color */
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Sea Battle</h1>
+        <div class="encounter">
+            <div class="battle-log" id="battle-log">
+                <!-- Battle log content will be dynamically added here -->
+            </div>
+            <div class="health-bar" id="player-health-bar">
+                <div class="health-bar-inner" id="player-health"></div>
+            </div>
+            <div class="health-bar" id="enemy-health-bar">
+                <div class="health-bar-inner" id="enemy-health"></div>
+            </div>
+            <button onclick="attack()">Attack</button>
+            <button onclick="defend()">Defend</button>
+            <button onclick="flee()">Flee</button>
+        </div>
+    </div>
+
+    <script>
+        // Initialize health values
+        let playerHealth = 100;
+        let enemyHealth = 100;
+
+        // Function to handle attack option
+        function attack() {
+            const playerDamage = Math.floor(Math.random() * 10) + 1; // Random damage between 1 and 10
+            const enemyDamage = Math.floor(Math.random() * 10) + 1; // Random damage between 1 and 10
+
+            // Update health values
+            playerHealth -= enemyDamage;
+            enemyHealth -= playerDamage;
+
+            // Display battle log
+            addToBattleLog(`You dealt ${playerDamage} damage to the enemy.`);
+            addToBattleLog(`The enemy dealt ${enemyDamage} damage to you.`);
+
+            // Update health bars
+            updateHealthBars();
+
+            // Check for battle outcome
+            checkBattleOutcome();
+        }
+
+        // Function to handle defend option
+        function defend() {
+            const enemyDamage = Math.floor(Math.random() * 5) + 1; // Random damage between 1 and 5
+
+            // Update health values
+            playerHealth -= enemyDamage;
+
+            // Display battle log
+            addToBattleLog(`The enemy dealt ${enemyDamage} damage to you while you defended.`);
+
+            // Update health bars
+            updateHealthBars();
+
+            // Check for battle outcome
+            checkBattleOutcome();
+        }
+
+        // Function to handle flee option
+        function flee() {
+            // Display battle log
+            addToBattleLog(`You attempted to flee from the battle.`);
+            addToBattleLog(`You were unable to escape.`);
+
+            // Check for battle outcome
+            checkBattleOutcome();
+        }
+
+        // Function to add messages to the battle log
+        function addToBattleLog(message) {
+            const battleLog = document.getElementById('battle-log');
+            const newMessage = document.createElement('p');
+            newMessage.textContent = message;
+            battleLog.appendChild(newMessage);
+        }
+
+        // Function to update health bars
+        function updateHealthBars() {
+            document.getElementById('player-health').style.width = playerHealth + '%';
+            document.getElementById('enemy-health').style.width = enemyHealth + '%';
+        }
+
+        // Function to check for battle outcome
+        function checkBattleOutcome() {
+            if (playerHealth <= 0) {
+                // Player defeated
+                addToBattleLog('You have been defeated!');
+                // Redirect to result page
+                window.location.href = "battleResult.html?result=defeat";
+            } else if (enemyHealth <= 0) {
+                // Enemy defeated
+                addToBattleLog('You have defeated the enemy!');
+                // Redirect to result page
+                window.location.href = "battleResult.html?result=victory";
+            }
+        }
+    </script>
+</body>
+</html>

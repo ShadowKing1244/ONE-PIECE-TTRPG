@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Battle</title>
+    <style>
+        /* CSS styles */
+        body {
+            background-color: #222;
+            color: white;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+        .button {
+            background-color: #4CAF50; /* Green */
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            transition-duration: 0.4s;
+            cursor: pointer;
+            border-radius: 12px;
+        }
+        .button:hover {
+            background-color: #45a049;
+        }
+        .menu {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .menu button {
+            margin: 0 10px;
+        }
+        .skills {
+            display: none;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .skills button {
+            margin: 0 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Battle</h1>
+    <h2>Wild Sea Monster</h2>
+    <div class="menu">
+        <button class="button" onclick="showSkills()">Attack</button>
+        <button class="button" onclick="showInventory()">Bag</button>
+        <button class="button" onclick="showSkills()">Skills</button>
+        <button class="button" onclick="run()">Run</button>
+    </div>
+
+    <div class="skills" id="skills">
+        <button class="button" onclick="useSkill('Skill 1')">Skill 1</button>
+        <button class="button" onclick="useSkill('Skill 2')">Skill 2</button>
+        <button class="button" onclick="useSkill('Skill 3')">Skill 3</button>
+        <button class="button" onclick="useSkill('Skill 4')">Skill 4</button>
+    </div>
+
+    <div class="inventory" id="inventory" style="display:none;">
+        <h2>Inventory</h2>
+        <button class="button" onclick="useItem('Apple')">Apple (x1)</button>
+    </div>
+
+    <script>
+        // Function to show skills buttons
+        function showSkills() {
+            var skills = document.getElementById("skills");
+            skills.style.display = "flex";
+            setTimeout(function(){ 
+                skills.style.display = "none"; 
+            }, 3000); // Fade out after 3 seconds
+        }
+
+        // Function to use a skill
+        function useSkill(skill) {
+            alert("You used " + skill + "!");
+            // Placeholder for more logic
+        }
+
+        // Function to show inventory
+        function showInventory() {
+            var inventory = document.getElementById("inventory");
+            if (inventory.style.display === "none") {
+                inventory.style.display = "block";
+            } else {
+                inventory.style.display = "none";
+            }
+        }
+
+        // Function to use an item from inventory
+        function useItem(item) {
+            alert("You used " + item + "!");
+            // Placeholder for more logic
+        }
+
+        // Function to simulate run command
+        function run() {
+            alert("You selected Run command. Attempting to flee from battle...");
+            // Placeholder for more logic
+            // Redirect back to the island you were on
+            window.location.href = "previous_island.html"; // Change to the correct URL
+        }
+    </script>
+</body>
+</html>
